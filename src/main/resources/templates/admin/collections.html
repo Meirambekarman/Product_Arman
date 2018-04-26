@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Collection Database</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="form-group">
+            <form action="#" th:action="@{/admin/collections/}" th:object="${collection}" method="post" style="...">
+                <label th:for="type">Type</label>
+                <input type="text" id="type" name="type" th:field="*{type}"
+                       class="form-control" placeholder="Түрін еңгізіңіз"/><br/>
+                <span th:errors="*{type}" class="text-danger"></span><br/>
+                <label th:for="kinds">Kinds</label>
+                <input type="text" id="kinds" name="kinds" th:field="*{kinds}"
+                       class="form-control" placeholder="Сапасын еңгізіңіз"/><br/>
+                <span th:errors="*{kinds}" class="text-danger"></span><br/>
+                <button type="submit" class="btn btn-primary">Сақтау</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org">
+<head>
+    <title>Client</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Client</h1>
+
+                <form class="form-horizontal" th:action="@{/admin/client/{id}/collections(id=${client.id})}"
+                      method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Name</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" disabled="disabled"
+                                       th:value="${client.firstName + ' ' + client.lastName}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Phone_Number</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" disabled="disabled"
+                                       th:value="${client.phoneNumber}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Address</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" disabled="disabled"
+                                       th:value="${client.address}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Collections</label>
+                            <div class="col-lg-10">
+                                <div th:each="collection : ${client.collections}">
+                                    <span th:text="${collection.type}"/> - <span th:text="${collection.kinds}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-2">
+                                <div class="input-group">
+                                    <select name="collectionId" class="form-control">
+                                        <option th:each="collection : ${collections}"
+                                                th:value="${collection.id}"
+                                                th:text="${collection.type + ' ' + collection.kinds}">Collection</option>
+                                    </select>
+                                    <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Add Collection</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
