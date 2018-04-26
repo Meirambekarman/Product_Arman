@@ -23,13 +23,13 @@ public class ClientsController {
     public String client(@PathVariable("id")int id, Model model){
         model.addAttribute("client", clientRepository.findById(id).get());
         model.addAttribute("collections",collectionRepository.findAll());
-        return "/admin/client";
+        return "admin/client";
     }
 
     @RequestMapping(value = "/admin/clients",method = RequestMethod.GET)
     public String clientsList(Model model){
         model.addAttribute("clients",clientRepository.findAll());
-        return "/admin/clients";
+        return "admin/clients";
     }
     @RequestMapping(value = "/admin/clients",method = RequestMethod.POST)
     public String clientsAdd(@RequestParam String firstName,
@@ -46,7 +46,7 @@ public class ClientsController {
 
         model.addAttribute("client",newClient);
         model.addAttribute("collections",collectionRepository.findAll());
-        return "redirect:/admin/client/" + newClient.getId();
+        return "redirect:admin/client/" + newClient.getId();
     }
     @RequestMapping(value = "/admin/client/{id}/collections", method = RequestMethod.POST)
     public String clientsAddCollection(@PathVariable Integer id,
@@ -62,22 +62,22 @@ public class ClientsController {
             clientRepository.save(client);
             model.addAttribute("client",clientRepository.findById(id).get());
             model.addAttribute("collection",collectionRepository.findAll());
-            return "redirect:/admin/client/" + client.getId();
+            return "redirect:admin/client/" + client.getId();
         }
         model.addAttribute("clients",clientRepository.findAll());
-        return "redirect:/admin/clients";
+        return "redirect:admin/clients";
     }
     @RequestMapping(value = "/admin/collections",method = RequestMethod.GET)
     public String collectionsAdd(Model model){
         model.addAttribute("collection",new Collection());
-        return "/admin/collections";
+        return "admin/collections";
     }
     @RequestMapping(value = "/admin/collections", method = RequestMethod.POST)
     public String collectionsAdd(@ModelAttribute("collection") @Valid Collection collection, Errors errors, Model model){
         if(errors.hasErrors()){
-            return "/admin/collections";
+            return "admin/collections";
         }
         collectionRepository.save(collection);
-        return "redirect:/admin/clients";
+        return "redirect:admin/clients";
     }
 }
