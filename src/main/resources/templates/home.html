@@ -2,22 +2,64 @@
 <html lang="en" xmlns:th="http://www.thymeleof.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ALEZA</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="jumbotron text-center">
+        <h1>Добро пожаловать наш магазин Aleza</h1>
+        <p>Это один из лучших магазинов касметики</p>
 
-<div class="container">
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
+    </div>
+    <div class="container">
+        <div class="panel-group" style="margin-top:40px">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span th:utext="${userName}"></span>
+                </div>
+                <h2>Наша компания AleZa предоставляет самые популярные продукции Кореи</h2>
+                <div class="photo">
+                    <img src ="https://pp.userapi.com/c616519/v616519846/4823/jBatnktjUXg.jpg"
+                         width="1000" height="600">
+                </div>
+                <div class="fig">
+                    <h3>
+                        <button class="btn btn-md btn-primary btn-block" name="бренды" type="Submit">Бренды<hr></button>
+                    <img src ="https://pp.userapi.com/c840322/v840322578/55b6d/1bCmyszOGFI.jpg"
+                         width="1000" height="600">
+                    </h3>
+                </div>
+                <button class="btn btn-md btn-primary btn-block" name="история" type="Submit">История<hr></button>
+                <p>AleZa-один из крупнейших интернет-магазинов корейской косметики в Казахстане. В нашем ассортименте вы найдете самые популярные бренды корейских производителей. Мы работаем напрямую с заводами-изготовителями. Вся продукция проходит все этапы контроля качества. Мы предлагаем нашим клиентам только оригинальную косметику,сертифицированную для продаж в РК. В нашем интернет-магазине работают самые компетентные и грамотные консультанты, являющиеся профессионалами своего дела. Готовы помочь в выборе и подборе продуктов, и ответить на любые интересующие Вас вопросы. В нашем магазине самый широкий ассортимент и приятные цены. Доставляем продукцию по всему Казахстану в кратчайшие сроки, удобным для Вас способом.</p>
+                <p>С любовью, ваш AleZa.kz</p><hr>
+                <div class="row">
+            <div class="col-sm-6">
+                <h3>
+                <a href="/admin/clients">Перейти на страницу clients
+                    <img src="https://iurist.info/wp-content/uploads/2018/01/prodavtsa.jpg"
+                         width="500" height="300">
+                </a>
+                </h3>
             </div>
-            <div class="col-lg-8 col-md-7 col-sm-6">
-                <a href="/admin/clients">Перейти на страницу clients</a>
+            <div class="col-sm-6">
+                <h3>
+                <a href="/admin/collections">Перейти на страницу collections
+                    <img src="https://besmart.kz/media/events/images/2016/10/21/b5dd7eee84dc4e49b9623623f11993df.jpg.633x370_q100_crop-smart.jpg"
+                         width="500" height="300">
+                </a>
+                </h3>
             </div>
-            <div class="col-lg-8 col-md-7 col-sm-6">
-                <a href="/admin/collections">Перейти на страницу collections</a>
+            <div>
+                <h3>
+                    <a href="https://vk.com/id305461598"/>
+                    <button class="btn btn-md btn-primary btn-block" name="vk.com" type="Submit">А так же у нас есть Vkontakte</button>
+                </h3>
+            </div>
+            <div>
+                <h3>
+                    <a href="https://www.instagram.com/zhanarbekova.a"/>
+                    <button class="btn btn-md btn-success btn-block" name="instagram.com" type="Submit">А так же у нас есть Инстаграм</button>
+                </h3>
             </div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
         </div>
@@ -26,6 +68,7 @@
         <button class="btn btn-md btn-danger btn-block" name="registration"
                 type="Submit">Выйти</button>
     </form>
+    </div>
 </div>
 </body>
 </html>
