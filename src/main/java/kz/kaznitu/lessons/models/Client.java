@@ -13,25 +13,26 @@ public class Client {
     private int phoneNumber;
     private String address;
     @ManyToMany
-    private List<Collection> collections;
+    private List<Product> products;
 
     public Client() {
         super();
     }
-    public Client(int id, String firstName, String lastName, int phoneNumber, String address, List<Collection> collections) {
+
+    public Client(int id, String firstName, String lastName, int phoneNumber, String address, List<Product> products) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.collections = collections;
+        this.products = products;
     }
-    public Client(String firstName, String lastName, int phoneNumber, String address, List<Collection> collections) {
+    public Client(String firstName, String lastName, int phoneNumber, String address, List<Product> products) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.collections = collections;
+        this.products = products;
     }
 
     public int getId() {
@@ -74,17 +75,17 @@ public class Client {
         this.address = address;
     }
 
-    public List<Collection> getCollections() {
-        return collections;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setCollections(List<Collection> collections) {
-        this.collections = collections;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
-    public boolean hasCollection(Collection collection) {
-        for (Collection containedCollection : getCollections()) {
-            if (containedCollection.getId() == collection.getId()) {
+    public boolean hasProduct(Product product) {
+        for (Product containedProduct : getProducts()) {
+            if (containedProduct.getId() == product.getId()) {
                 return true;
             }
         }

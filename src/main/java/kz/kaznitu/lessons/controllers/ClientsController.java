@@ -1,9 +1,9 @@
 package kz.kaznitu.lessons.controllers;
 
 import kz.kaznitu.lessons.models.Client;
-import kz.kaznitu.lessons.models.Collection;
+import kz.kaznitu.lessons.models.Product;
 import kz.kaznitu.lessons.repositories.ClientRepository;
-import kz.kaznitu.lessons.repositories.CollectionRepository;
+import kz.kaznitu.lessons.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +17,12 @@ public class ClientsController {
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
-    private CollectionRepository collectionRepository;
+    private ProductRepository productRepository;
 
     @RequestMapping("/admin/client/{id}")
     public String client(@PathVariable("id")int id, Model model){
         model.addAttribute("client", clientRepository.findById(id).get());
-        model.addAttribute("collections",collectionRepository.findAll());
+        model.addAttribute("products", productRepository.findAll());
         return "client";
     }
 
@@ -45,39 +45,39 @@ public class ClientsController {
         clientRepository.save(newClient);
 
         model.addAttribute("client",newClient);
-        model.addAttribute("collections",collectionRepository.findAll());
+        model.addAttribute("products",productRepository.findAll());
         return "redirect:/admin/client/" + newClient.getId();
     }
-    @RequestMapping(value = "/admin/client/{id}/collections", method = RequestMethod.POST)
-    public String clientsAddCollection(@PathVariable Integer id,
-                                     @RequestParam Integer collectionId,
+    @RequestMapping(value = "/admin/client/{id}/products", method = RequestMethod.POST)
+    public String clientsAddProduct(@PathVariable Integer id,
+                                     @RequestParam Integer productId,
                                      Model model){
-        Collection collection = collectionRepository.findById(collectionId).get();
+        Product product = productRepository.findById(productId).get();
         Client client = clientRepository.findById(id).get();
 
         if(client != null){
-            if(!client.hasCollection(collection)){
-                client.getCollections().add(collection);
+            if(!client.hasProduct(product)){
+                client.getProducts().add(product);
             }
             clientRepository.save(client);
             model.addAttribute("client",clientRepository.findById(id).get());
-            model.addAttribute("collection",collectionRepository.findAll());
+            model.addAttribute("product",productRepository.findAll());
             return "redirect:/admin/client/" + client.getId();
         }
         model.addAttribute("clients",clientRepository.findAll());
         return "redirect:/admin/clients";
     }
-    @RequestMapping(value = "/admin/collections",method = RequestMethod.GET)
-    public String collectionsAdd(Model model){
-        model.addAttribute("collection",new Collection());
-        return "collections";
+    @RequestMapping(value = "/admin/products",method = RequestMethod.GET)
+    public String productsAdd(Model model){
+        model.addAttribute("product",new Product());
+        return "products";
     }
-    @RequestMapping(value = "/admin/collections", method = RequestMethod.POST)
-    public String collectionsAdd(@ModelAttribute("collection") @Valid Collection collection, Errors errors, Model model){
+    @RequestMapping(value = "/admin/products", method = RequestMethod.POST)
+    public String productsAdd(@ModelAttribute("product") @Valid Product product, Errors errors, Model model){
         if(errors.hasErrors()){
-            return "collections";
+            return "products";
         }
-        collectionRepository.save(collection);
+        productRepository.save(product);
         return "redirect:/admin/clients";
     }
 }

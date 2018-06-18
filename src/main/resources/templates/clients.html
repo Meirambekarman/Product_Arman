@@ -16,15 +16,15 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Collections</th>
+                    <th>Products</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="client : ${clients}">
                     <td th:text="${client.firstName + ' ' + client.lastName}"></td>
                     <td>
-                        <span th:each="collection,iterStat : ${client.collections}">
-                            <span th:text="${collection.type}"/><th:block th:if="${!iterStat.last}">,</th:block>
+                        <span th:each="product,iterStat : ${client.products}">
+                            <span th:text="${product.name}"/><th:block th:if="${!iterStat.last}">,</th:block>
                         </span>
                     </td>
                     <td>
